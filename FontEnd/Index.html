@@ -7,19 +7,23 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="jokes-section">
-        <h2>Dad Jokes</h2>
-        <div id="jokes-items-container"></div>
-    </div>
-    <script>
-        fetch('https://localhost:7134/api/Jokes')
-        .then(res => {
-            return res.json();
-        })
-        .then(data => {
-            console.log(data);
-        })
-        .catch(error => console.log(error))
+    <h2>Dad Jokes API</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Category</th>
+                <th scope="col">Setup</th>
+                <th scope="col">Punch Line</th>
+              </tr>
+        </thead>
+            <tbody id="tbody">
+                
+            </tbody>
+        
+    </table>
+    <script src="dadJokes.js">
+        
     </script>
 </body>
 </html>
