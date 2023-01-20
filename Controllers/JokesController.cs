@@ -49,6 +49,36 @@ namespace DadJokesAPI.Controllers
             return joke;
         }
 
+        //Seed Method
+        [HttpGet("seed")]
+        public string Seed()
+        {
+            if (!_context.Jokes.Any())
+            {
+                List<Joke> jokes = new List<Joke>
+            {
+                new Joke {Category = "General", Setup="I don't trust those trees", Punch="They seem kind of shady."},
+                new Joke {Category = "Wife", Setup="My wife is really mad at the fact that I have no sense of direction", Punch="So I packed up my stuff and right!"},
+                new Joke {Category = "Sports", Setup="Why couldn't the bicycle stand up by itself?", Punch="It was two tired."},
+                new Joke {Category = "General", Setup="What did the ocean say to the beach?", Punch="Nothing, it just waved."},
+                new Joke {Category = "Knok-Knock", Setup="Knock knock. Who's there? Spell. Spell who?", Punch="Okay, fine. W-H-O!"},
+                new Joke {Category = "Wife", Setup="My wife said I should do lunges to stay in shape.", Punch="That would be a big step forward."},
+                new Joke {Category = "Knok-Knock", Setup="nock knock. Who's there? I am. I am who? ", Punch="I am who is knocking. Who are you?"},
+                new Joke {Category = "Sports", Setup="What does a sprinter eat before a race?", Punch="Nothing, they fast!"},
+                new Joke {Category = "General", Setup="What has more letters than the alphabet?", Punch="The post office!"},
+                new Joke {Category = "Knock-Knock", Setup="Knock knock. Who's there? Europe. Europe who?", Punch="No, you're a poo!"},
+                new Joke {Category = "Wife", Setup="My wife gets angry…", Punch="That I keep introducing her as my ex-girlfriend."},
+                new Joke {Category = "Sports", Setup="What kind of shoes do ninjas wear?", Punch="Sneakers!"},
+                new Joke {Category = "General", Setup="How did Harry Potter get down the hill?", Punch="Walking. JK! Rowling."},
+            };
+
+                _context.AddRange(jokes);
+                _context.SaveChanges();
+
+                return ("Seeding Done!");
+            }
+            return ("The database is not empty");
+        }
         // PUT: api/Jokes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -121,3 +151,4 @@ namespace DadJokesAPI.Controllers
         }
     }
 }
+
