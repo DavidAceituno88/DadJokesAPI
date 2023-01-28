@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using DadJokesAPI.Controllers;
+using DadJokesAPI.Models;
+using FakeItEasy;
+using FluentAssertions;
+using Microsoft.AspNetCore.Mvc;
+
+namespace dadjokesapi.test.Controller
+{
+    public class JokesControllerTest 
+    {
+        private readonly JokeDbContext _context;
+
+        public JokesControllerTest()
+        {
+            _context = A.Fake<JokeDbContext>();
+        }
+        [Fact]
+        public void JokesControllerTest_GetJokes_ReturnOk()
+        {
+            //Arrange
+            var joke = A.Fake<ICollection<Joke>>();
+            var jokeList = A.Fake<List<Joke>>();
+            var controller = new JokesController(_context);
+            //Act
+            var result = controller.GetJokes();
+            //Assert
+            result.Should().NotBeNull();
+            result.Should().BeOfType(typeof(OkObjectResult));
+        }
+    }
+}
